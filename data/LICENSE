@@ -1,0 +1,15 @@
+
+
+# Uluru / Ayers Rock 1:250 000 GIS Dataset
+The contents of ./GEODATA_TOPO250K_TILE_DAT are (C) Copyright Commonwealth of Australia  (Geoscience Australia) 2006 and licensed CC-BY-SA 4.0: https://creativecommons.org/licenses/by/4.0/legalcode
+
+This folder is an abstract of the complete dataset, containing only Elevation shape files. The complete dataset is available from: 
+https://milesmcbain.xyz/ghost/#/editor/5aa8b119a47caa00012c494b
+
+# ELVIS Clip
+ELVIS_CLIP.tif is 1 Second DEM GeoTIFF (Geo-referenced Tagged Image File Format) data within the area bounded by:
+latitudes -25.39521 to -25.2922 and longitudes 130.97454 to 131.09814 (in GCS WGS84) with coordinate system Lambert Conformal Conic for Australia, WGS84 datum, Meter
+
+Data was obtained from the ELVIS system, http://www.ga.gov.au/elvis/, 12/03/2018.
+
+This data is © Commonwealth of Australia (Geoscience Australia) 2012  and licensed CC-BY-SA 3.0 AU: https://creativecommons.org/licenses/by/3.0/au/

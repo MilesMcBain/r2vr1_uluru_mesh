@@ -1,0 +1,3 @@
+(C) Copyright Commonwealth of Australia  (Geoscience Australia) 2006
+
+The GEODATA TOPO 250K Series 3 User Guide can be found at http://www.ga.gov.au/image_cache/GA8349.pdf
