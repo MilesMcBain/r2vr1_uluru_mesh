@@ -1,6 +1,7 @@
 library(sf)
 library(raster)
 library(tidyverse)
+source("./helpers/sf_to_trimesh.R")
 
 ##### Shapes #####
 
@@ -77,3 +78,42 @@ uluru_trimesh <- sf_to_trimesh(uluru_outline_poly, 2500)
 plot(uluru_trimesh, main = "Triangular mesh of Uluru outline polygon")
 
 ##### Adding raster Elevation #####
+
+uluru_elev <- raster::extract(nt_raster, uluru_trimesh$P[,1:2])
+uluru_trimesh$P <- cbind(uluru_trimesh$P, uluru_elev)
+
+# rgl preview
+library(rgl)
+rgl.clear()
+bg3d("white")
+  wire3d(
+    tmesh3d(
+      vertices = t(asHomogeneous(uluru_trimesh$P)), 
+      indices = array(t(uluru_trimesh$T))
+    )
+  )
+rglwidget()
+
+##### Triangulating A Raster #####
+
+source("./helpers/bbox_to_multipoly.R")
+uluru_contours_bbox <- 
+  st_bbox(uluru_outline_poly)
+uluru_extent <- 
+  bbox_to_multipoly(uluru_contours_bbox, 
+                    st_crs(uluru_outline_poly))
+ul_extent_trimesh <- 
+  sf_to_trimesh(uluru_extent, 2500)
+ul_extent_elev <- 
+  raster::extract(nt_raster, ul_extent_trimesh$P[,1:2])
+ul_extent_trimesh$P <- 
+  cbind(ul_extent_trimesh$P, ul_extent_elev)
+
+rgl.clear()
+bg3d("white")
+  wire3d(
+    tmesh3d(vertices = t(asHomogeneous(ul_extent_trimesh$P)), 
+            indices = array(t(ul_extent_trimesh$T))
+    )
+  )
+rglwidget()  
