@@ -5,6 +5,11 @@ source("./helpers/sf_to_trimesh.R")
 
 ##### Shapes #####
 
+# Contours from all over Uluru-Kata Tjuta National Park                    
+uluru_kata_shape <- 
+read_sf("./data/GEODATA_TOPO250K_TILE_DATA/G5208/Shapefiles/Elevation/g5208_contours.shx")
+
+# Make a bounding box to focus in on Uluru
 # mymaps.google.com is a handy tool for determining bounding boxes.
 uluru_bbox_poly <- 
   st_bbox(c(ymin = -25.39521, 
@@ -15,10 +20,7 @@ uluru_bbox_poly <-
     st_as_sfc() 
     # An sf bbox is not geometry... this converts it :S
 
-# Contours from all over Uluru-Kata Tjuta National Park                    
-uluru_kata_shape <- 
-read_sf("./data/GEODATA_TOPO250K_TILE_DATA/G5208/Shapefiles/Elevation/g5208_contours.shx")
-
+# Filter map countours to those comprising Uluru
 uluru_contours <- 
     filter(uluru_kata_shape, 
            as.vector(
@@ -27,7 +29,7 @@ uluru_contours <-
                         sparse = FALSE)
            ))
 
-# Find the outer contour by finding the one with the highest longitude?
+# Find the outer contour by finding the one with the highest longitude
 uluru_outline <- 
   uluru_contours %>%
   mutate(max_y = map_dbl(geometry,
@@ -76,6 +78,14 @@ lines(as(uluru_outline_poly, 'Spatial'))
 
 uluru_trimesh <- sf_to_trimesh(uluru_outline_poly, 2500)
 plot(uluru_trimesh, main = "Triangular mesh of Uluru outline polygon")
+
+# First triangle
+first_tri_vertex_indices <- uluru_trimesh$T[1,]
+first_tri_vertex_indices
+
+# Corresponindg Vertices
+first_tri_vertices <- uluru_trimesh$P[first_tri_vertex_indices,]
+first_tri_vertices
 
 ##### Adding raster Elevation #####
 
