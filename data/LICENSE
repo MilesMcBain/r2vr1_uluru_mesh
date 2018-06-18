@@ -4,7 +4,7 @@
 The contents of ./GEODATA_TOPO250K_TILE_DAT are (C) Copyright Commonwealth of Australia  (Geoscience Australia) 2006 and licensed CC-BY-SA 4.0: https://creativecommons.org/licenses/by/4.0/legalcode
 
 This folder is an abstract of the complete dataset, containing only Elevation shape files. The complete dataset is available from: 
-https://milesmcbain.xyz/ghost/#/editor/5aa8b119a47caa00012c494b
+https://ecat.ga.gov.au/geonetwork/srv/eng/catalog.search?node=srv#/metadata/a05f7892-f597-7506-e044-00144fdd4fa6
 
 # ELVIS Clip
 ELVIS_CLIP.tif is 1 Second DEM GeoTIFF (Geo-referenced Tagged Image File Format) data within the area bounded by:
